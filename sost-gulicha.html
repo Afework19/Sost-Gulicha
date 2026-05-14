@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ሶስት ጉሊቻ — Sost Gulicha</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coffee: #3B1F0F;
+    --espresso: #1A0A04;
+    --cream: #F5ECD7;
+    --gold: #C8952A;
+    --gold-light: #E8B84B;
+    --terracotta: #C4622D;
+    --sage: #7A8C6E;
+    --sage-light: #A8B89A;
+    --parchment: #EDE0C4;
+    --warm-white: #FAF6EE;
+    --text-muted: #8B7355;
+    --border: rgba(200, 149, 42, 0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--espresso);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(59,31,15,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(196,98,45,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 60% 80%, rgba(122,140,110,0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Geometric border pattern (Ethiopian-inspired) */
+  .geo-border {
+    width: 100%;
+    height: 6px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0px, var(--gold) 8px,
+      var(--terracotta) 8px, var(--terracotta) 16px,
+      var(--gold) 16px, var(--gold) 24px,
+      var(--espresso) 24px, var(--espresso) 32px
+    );
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  .logo-ge-ez {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+
+  .logo-en {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--espresso);
+    border: none;
+    padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 88vh;
+    align-items: center;
+    padding: 4rem 3rem 4rem 5rem;
+  }
+
+  .hero-text { max-width: 520px; }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow-line {
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 82px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--espresso);
+    border: none;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--border);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* Hero visual — coffee cup + cards */
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 560px;
+  }
+
+  .profile-stack {
+    position: relative;
+    width: 280px;
+    height: 380px;
+  }
+
+  .profile-card {
+    position: absolute;
+    width: 260px;
+    background: linear-gradient(160deg, #2A1208 0%, #1A0A04 100%);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+
+  .profile-card:nth-child(1) {
+    top: 0; left: 20px;
+    transform: rotate(-4deg) translateY(8px);
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  .profile-card:nth-child(2) {
+    top: 0; left: 10px;
+    transform: rotate(-1.5deg);
+    z-index: 2;
+    opacity: 0.75;
+  }
+
+  .profile-card:nth-child(3) {
+    top: 0; left: 0;
+    transform: rotate(0deg);
+    z-index: 3;
+  }
+
+  .profile-card:hover { transform: rotate(0deg) translateY(-4px) !important; }
+
+  .card-img {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, var(--coffee) 0%, #5C2E10 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    color: rgba(200,149,42,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, #1A0A04);
+  }
+
+  .card-info {
+    padding: 14px 16px;
+  }
+
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .card-detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .card-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* Coffee circles decoration */
+  .coffee-rings {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.15;
+  }
+
+  /* FEATURES SECTION */
+  .features {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+  }
+
+  .section-title span {
+    display: block;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .section-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 260px;
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .feature-item {
+    background: var(--espresso);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+
+  .feature-item:hover {
+    background: #2A1208;
+  }
+
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* ONBOARDING / FILTERS SECTION */
+  .filters-section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 5rem;
+    background: rgba(59,31,15,0.3);
+    border-top: 1px solid var(--border);
+  }
+
+  .filters-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .filter-panel {
+    background: #1E0D06;
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+
+  .filter-panel-title {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .filter-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .chip:hover, .chip.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,149,42,0.08);
+  }
+
+  .filter-range {
+    width: 100%;
+    accent-color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .filter-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 3rem;
+  }
+
+  .testimonial {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--cream);
+    margin-bottom: 1.25rem;
+    padding-top: 1rem;
+  }
+
+  .testimonial-author {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .testimonial-author strong {
+    color: var(--gold);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    position: relative;
+    z-index: 1;
+    padding: 7rem 5rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'ሶስት ጉሊቻ';
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 180px;
+    color: rgba(200,149,42,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cta-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 0;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .cta-input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .cta-input::placeholder { color: var(--text-muted); }
+  .cta-input:focus { border-color: var(--gold); }
+
+  .cta-btn {
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--espresso);
+    border: 1px solid var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-langs {
+    display: flex;
+    gap: 16px;
+  }
+
+  .lang-btn {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+
+  .lang-btn:hover, .lang-btn.active { color: var(--gold); }
+
+  /* APP SCREEN MOCKUP */
+  .app-mockup {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 5rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .mockup-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .phone-frame {
+    background: #0F0502;
+    border: 1px solid rgba(200,149,42,0.3);
+    border-radius: 24px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phone-frame::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 0 auto 12px;
+  }
+
+  .phone-screen {
+    background: #150804;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 420px;
+  }
+
+  .screen-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .screen-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .screen-body { padding: 16px; }
+
+  .match-card {
+    background: linear-gradient(160deg, #2A1208, #1A0A04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .match-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--coffee), #5C2E10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+    float: left;
+    margin-right: 12px;
+  }
+
+  .match-info { overflow: hidden; }
+
+  .match-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--cream);
+  }
+
+  .match-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .match-pct {
+    float: right;
+    font-size: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+  }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-text > *:nth-child(4) { animation-delay: 0.55s; }
+
+  .profile-card:nth-child(3) { animation: fadeUp 0.8s 0.3s both ease; }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+    .hero-visual { display: none; }
+    .features { padding: 3rem 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .filters-section { padding: 3rem 1.5rem; }
+    .filters-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .testimonials { padding: 3rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 4rem 1.5rem; }
+    .app-mockup { padding: 3rem 1.5rem; }
+    .mockup-container { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .section-note { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="geo-border"></div>
+
+<nav>
+  <div class="logo">
+    <span class="logo-ge-ez">ሶስት ጉሊቻ</span>
+    <span class="logo-en">Sost Gulicha</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">Our story</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Community</a></li>
+  </ul>
+  <button class="nav-cta">Join the community</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">For the Habesha diaspora</span>
+    </div>
+    <h1>Love rooted in <em>culture & heritage</em></h1>
+    <p class="hero-sub">
+      Sost Gulicha — three coffee rounds, three conversations, one deep connection. 
+      A matchmaking platform for Ethiopian and Eritrean singles who want a partner 
+      who truly understands where they come from.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Begin your journey →</button>
+      <button class="btn-ghost">Learn more</button>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="profile-stack">
+      <!-- Card 3 (back) -->
+      <div class="profile-card">
+        <div class="card-img">ሀ</div>
+        <div class="card-info">
+          <div class="card-name">Selam, 29</div>
+          <div class="card-detail">Addis Ababa · Washington D.C. · 91% match</div>
+          <div class="card-tags">
+            <span class="tag">Orthodox</span>
+            <span class="tag">Amharic</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 (middle) -->
+      <div class="profile-card">
+        <div class="card-img">በ</div>
+        <div class="card-info">
+          <div class="card-name">Miriam, 32</div>
+          <div class="card-detail">Asmara · Toronto · 88% match</div>
+          <div class="card-tags">
+            <span class="tag">Tigrinya</span>
+            <span class="tag">Catholic</span>
+          </div>
+        </div>
+      </div>
+      <!-- Card 1 (front) -->
+      <div class="profile-card">
+        <div class="card-img">ሐ</div>
+        <div class="card-info">
+          <div class="card-name">Hana, 27</div>
+          <div class="card-detail">Gondar · London · 95% match</div>
+          <div class="card-tags">
+            <span class="tag">Amharic</span>
+            <span class="tag">Orthodox</span>
+            <span class="tag">Family-first</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coffee ring SVG decoration -->
+    <svg class="coffee-rings" viewBox="0 0 80 80" fill="none">
+      <circle cx="30" cy="30" r="25" stroke="#C8952A" stroke-width="2"/>
+      <circle cx="50" cy="50" r="25" stroke="#C8952A" stroke-width="2"/>
+    </svg>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-header">
+    <h2 class="section-title">
+      Built for us.<br><span>By us.</span>
+    </h2>
+    <p class="section-note">Every feature is designed around the values and realities of Habesha diaspora life.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">☕</span>
+      <h3 class="feature-title">The Three Rounds</h3>
+      <p class="feature-desc">Inspired by the Ethiopian coffee ceremony — three structured conversations that go deeper each round. Not swiping. Real connection.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🌍</span>
+      <h3 class="feature-title">Cultural filters</h3>
+      <p class="feature-desc">Filter by ethnicity (Ethiopian / Eritrean / both), region of origin, language (Amharic, Tigrinya, Oromiffa), and faith tradition.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">🙏</span>
+      <h3 class="feature-title">Faith-aware matching</h3>
+      <p class="feature-desc">Orthodox Christian, Catholic, Muslim, Protestant — with denomination-level options. Because faith shapes everything.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">👨‍👩‍👧</span>
+      <h3 class="feature-title">Family profile</h3>
+      <p class="feature-desc">Share as much — or as little — as you choose about your family background. Optional family introduction mode for those who involve parents.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">✅</span>
+      <h3 class="feature-title">Community verified</h3>
+      <p class="feature-desc">Profiles verified through diaspora community networks. Trusted like your habesha network — but modern and global.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">💰</span>
+      <h3 class="feature-title">Fair pricing</h3>
+      <p class="feature-desc">Freemium model that doesn't lock you out of real matches. Premium plans that cost less than half of comparable apps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS PREVIEW -->
+<section class="filters-section">
+  <div class="filters-layout">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Smart matching</span>
+      </div>
+      <h2 class="section-title" style="font-size:42px; margin-bottom:1.5rem;">
+        Filters that<br><span>actually matter</span>
+      </h2>
+      <p style="color:var(--text-muted); font-size:14px; line-height:1.8; max-width:380px;">
+        Generic apps have no idea what matters in our community. 
+        Sost Gulicha was built knowing that sharing a language, a faith, 
+        or a hometown region creates a bond no algorithm can invent.
+      </p>
+    </div>
+
+    <div class="filter-panel">
+      <div class="filter-panel-title">Match preferences</div>
+      
+      <div class="filter-group">
+        <span class="filter-label">Heritage</span>
+        <div class="filter-chips">
+          <button class="chip active">Ethiopian 🇪🇹</button>
+          <button class="chip active">Eritrean 🇪🇷</button>
+          <button class="chip">Both</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Language</span>
+        <div class="filter-chips">
+          <button class="chip active">Amharic</button>
+          <button class="chip">Tigrinya</button>
+          <button class="chip">Oromiffa</button>
+          <button class="chip">Somali</button>
+          <button class="chip">English only</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Faith</span>
+        <div class="filter-chips">
+          <button class="chip">Orthodox</button>
+          <button class="chip active">Muslim</button>
+          <button class="chip">Catholic</button>
+          <button class="chip">Protestant</button>
+          <button class="chip">Open</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Location</span>
+        <div class="filter-chips">
+          <button class="chip active">Washington D.C.</button>
+          <button class="chip">Minneapolis</button>
+          <button class="chip">London</button>
+          <button class="chip">Toronto</button>
+          <button class="chip">+ more</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Age range — 25 to 40</span>
+        <input type="range" class="filter-range" min="18" max="60" value="40">
+        <div class="filter-range-labels"><span>18</span><span>60</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP SCREENS -->
+<section class="app-mockup">
+  <div class="section-header">
+    <h2 class="section-title">
+      Three rounds.<br><span>One connection.</span>
+    </h2>
+    <p class="section-note">The coffee ceremony is our inspiration. Three meaningful conversations, not endless swiping.</p>
+  </div>
+
+  <div class="mockup-container">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="screen-header">
+          <span class="screen-title">Discover</span>
+          <span style="font-size:11px; color:var(--text-muted)">3 new matches</span>
+        </div>
+        <div class="screen-body">
+          <div class="match-card clearfix">
+            <div class="match-pct">95%</div>
+            <div class="match-avatar">ሀ</div>
+            <div class="match-info">
+              <div class="match-name">Hana, 27</div>
+              <div class="match-meta">Gondar · London · Orthodox</div>
+            </div>
+          </div>
+          <div class="match-card clearfix">
+            <div class="match-pct">91%</div>
+            <div class="match-avatar">ሰ</div>
+            <div class="match-info">
+              <div class="match-name">Selam, 29</div>
+              <div class="match-meta">Addis · D.C. · Orthodox</div>
+            </div>
+          </div>
+          <div class="match-card clearfix">
+            <div class="match-pct">87%</div>
+            <div class="match-avatar">ሚ</div>
+            <div class="match-info">
+              <div class="match-name">Miriam, 32</div>
+              <div class="match-meta">Asmara · Toronto · Catholic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-frame" style="margin-top: 32px;">
+      <div class="phone-screen">
+        <div class="screen-header">
+          <span class="screen-title">Round 1 — Abol</span>
+          <span style="font-size:11px; color:var(--gold)">● Live</span>
+        </div>
+        <div class="screen-body">
+          <div style="background:rgba(200,149,42,0.08); border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:12px;">
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">Hana asked:</p>
+            <p style="font-size:14px; color:var(--cream); font-family:'Cormorant Garamond',serif; font-style:italic;">"What does home mean to you now that you're in the diaspora?"</p>
+          </div>
+          <div style="background:#1E0D06; border:1px solid var(--border); border-radius:8px; padding:12px; margin-bottom:16px;">
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:6px;">Your turn:</p>
+            <p style="font-size:12px; color:var(--text-muted); font-style:italic;">Type your answer in Amharic or English...</p>
+          </div>
+          <button class="btn-primary" style="width:100%; justify-content:center; font-size:13px;">
+            Send reply ↗
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="screen-header">
+          <span class="screen-title">Round 3 — Bereka</span>
+          <span style="font-size:11px; color:var(--sage-light)">Final round</span>
+        </div>
+        <div class="screen-body">
+          <div style="text-align:center; padding:20px 0;">
+            <div style="font-size:48px; margin-bottom:12px;">💍</div>
+            <p style="font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--cream); margin-bottom:8px;">You and Hana have completed all three rounds</p>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom:20px;">Both of you expressed interest in meeting. Connect and take the next step.</p>
+            <button class="btn-primary" style="margin: 0 auto; display:flex; justify-content:center; font-size:13px;">Exchange contact ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <h2 class="section-title">Real stories.<br><span>Real love.</span></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <p class="testimonial-text">I'd tried every app. Nobody understood why family matters so much to me, or why I needed someone who speaks Amharic. Sost Gulicha was the first time I felt like the app was made for me.</p>
+      <p class="testimonial-author">
+        <strong>Tigist, 31</strong>
+        Washington D.C. · Met her fiancé through the app
+      </p>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">The "Three Rounds" format forced real conversations instead of small talk. By the end of round two I knew this was someone worth meeting. We got engaged six months later.</p>
+      <p class="testimonial-author">
+        <strong>Dawit, 34</strong>
+        Minneapolis · Married through Sost Gulicha
+      </p>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">As an Eritrean woman, I was always the odd one out on other platforms. Here I found someone who shares my faith, my language, my values — and my love of injera debates.</p>
+      <p class="testimonial-author">
+        <strong>Miriam, 28</strong>
+        London · Currently in a relationship
+      </p>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">My parents were skeptical of a dating app. But when I showed them the family profile feature and community verification, they were actually excited. That meant everything to me.</p>
+      <p class="testimonial-author">
+        <strong>Yonas, 29</strong>
+        Toronto · In relationship since 2024
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-eyebrow">Join thousands of Habesha singles</p>
+  <h2 class="cta-title">Your <em>abol</em> is waiting.</h2>
+  <p class="cta-sub">Free to join. Real matches. Your culture at the center.</p>
+  <div class="cta-form">
+    <input type="email" class="cta-input" placeholder="Your email address">
+    <button class="cta-btn">Get early access</button>
+  </div>
+</section>
+
+<div class="geo-border"></div>
+
+<footer>
+  <div>
+    <div class="logo-ge-ez" style="font-size:18px; color:var(--gold); font-family:'Cormorant Garamond',serif;">ሶስት ጉሊቻ</div>
+    <div class="footer-note" style="margin-top:4px;">© 2025 Sost Gulicha · For the Habesha diaspora, with love.</div>
+  </div>
+  <div class="footer-langs">
+    <button class="lang-btn active">English</button>
+    <button class="lang-btn">አማርኛ</button>
+    <button class="lang-btn">ትግርኛ</button>
+  </div>
+  <div class="footer-note">
+    Privacy · Terms · Community Guidelines
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('active'));
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
